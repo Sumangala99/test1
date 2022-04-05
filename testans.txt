@@ -1,0 +1,132 @@
+Question 1
+
+package test1;
+import java.io.FileReader;
+import java.io.FileWriter;
+public class que1 {
+    public static void main(String[] args) {
+        try {
+            FileReader fr=new FileReader("test1/file1.txt");
+            FileWriter fw=new FileWriter("test1/file2.txt");
+            String str="";
+            int i;
+            while((i=fr.read())!=-1)
+            {
+                str+=(char)i;
+            }
+            System.out.println(str);
+            fw.write(str);
+            fr.close();
+            fw.close();
+            System.out.println("file reading and writing done");
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
+    
+}
+
+
+Question 2
+
+package test1;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public class que2 {
+    public static HashMap<String,Integer> sortByValue(HashMap<String,Integer>hm)
+    {
+        List<Map.Entry<String,Integer>> list=new LinkedList<Map.Entry<String,Integer>>(hm.entrySet());
+        Collections.sort(list,new Comparator<Map.Entry<String,Integer>>()
+        {
+            public int compare(Map.Entry<String,Integer> o1,Map.Entry<String,Integer> o2)
+            {
+                return (o1.getValue().compareTo(o2.getValue()));
+            }
+        });
+        HashMap<String,Integer> temp=new LinkedHashMap<String,Integer>();
+        for(Map.Entry<String,Integer> aa:list)
+        {
+            temp.put(aa.getKey(),aa.getValue());
+        }
+        return temp;
+            
+    }
+
+        
+    public static void main(String[] args) {
+        HashMap<String,Integer> hm=new HashMap<>();
+        hm.put("Java",95);
+        hm.put("Python",90);
+        hm.put("SQL",92);
+        hm.put("HTML",98);
+        Map<String,Integer> hm1=sortByValue(hm);
+        for(Map.Entry<String,Integer> en:hm1.entrySet())
+        {
+            System.out.println("Key= "+en.getKey()+", Value= "+en.getValue());
+        }
+    }
+    
+}
+
+Question 3
+
+package test1;
+
+public class que3 {
+    static char maxRepeat(String str)
+    {
+        
+        int len=str.length();
+        int count=0;
+        char res=str.charAt(0);
+        int cur_count=1;
+        for(int i=0;i<len;i++)
+        {
+           
+            
+        if(i<len-1&&str.charAt(i)==str.charAt(i+1))
+         cur_count++;
+         else
+         {
+            if(cur_count>count)
+            {
+                count=cur_count;
+                res=str.charAt(i);
+            }
+            cur_count=1; 
+         }
+        }
+        return res;
+    }
+    public static void main(String[] args) {
+        String str="Harry Potter in his magical Island";
+        System.out.println(maxRepeat(str));
+
+    }
+    
+}
+Question 4
+package test1;
+import java.util.Scanner;
+public class que4 {
+    public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("Enter number");
+    int n=sc.nextInt();
+    int fact=1;
+    for(int i=1;i<=n;i++)
+    {
+        fact=fact*i;
+    }
+    
+    System.out.println(fact);
+}
+}
